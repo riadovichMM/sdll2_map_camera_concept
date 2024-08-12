@@ -67,8 +67,6 @@ void Main::handle_event() {
 }
 
 void Main::update() {
-    this->map->update();
-    this->player->update();
 
     int map_size_x = this->map->get_size_x();
     int map_size_y = this->map->get_size_y();
@@ -90,6 +88,10 @@ void Main::update() {
 
     this->camera->y_direction = 0;
     this->camera->x_direction = 0;
+
+    // сначала надо изменить состояние камеры а затем уже состояние всех других объектов
+    this->map->update();
+    this->player->update();
 }
 
 void Main::render() {
